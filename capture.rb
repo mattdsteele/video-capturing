@@ -34,6 +34,7 @@ def create_avs(video_def)
   avs_file = ''
   avs_file << "AviSource(\"h:\\capturing\\raw\\#{video_def[:name]}.avi\")\n"
   avs_file << "Trim(#{video_def[:start_frame]}, #{video_def[:end_frame]}, false)\n"
+  avs_file << "ConvertToRGB32()\n"
   avs_file << 'LoadVirtualDubPlugin("H:\\Documents and Settings\\matt\\Desktop\\vdub\\plugins\\Smart.vdf", "SmartDeint", 1)' << "\n"
   avs_file << "Crop(#{frames[:left]},#{frames[:top]},-#{frames[:right]},-#{frames[:bottom]})\n"
   avs_file << "SmartDeint(0,3,8,100,0,0,0,0,1,2,1)\n"
@@ -45,7 +46,7 @@ def create_avs(video_def)
 end
 
 #cleanup scripts
-`rm scripts/*`
+`del scripts/*`
 
 get_video_defs.each do |video|
   create_avs video
