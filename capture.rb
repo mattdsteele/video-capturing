@@ -19,8 +19,8 @@ def get_video_defs
   2.upto(33) do |line|
     name = oo.cell(line,'A')
     first_date = oo.cell(line,'B')
-    start_frame = oo.cell(line,'D')
-    end_frame = oo.cell(line,'E')
+    start_frame = oo.cell(line,'D').to_i
+    end_frame = oo.cell(line,'E').to_i
     camera = oo.cell(line,'F')
     frames = get_frames camera
     alt_name = oo.cell(line,'F')
