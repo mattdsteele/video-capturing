@@ -1,30 +1,4 @@
-require 'roo'
-class OdsImporter
-  def self.generate(file = "spec/example.ods")
-    values = []
-    oo = Openoffice.new(file)
-    oo.default_sheet = oo.sheets.first
-    2.upto(oo.last_row) do |line|
-    source = oo.cell(line,'A')
-    first_date = oo.cell(line,'B')
-    start_frame = oo.cell(line,'D').to_i
-    end_frame = oo.cell(line,'E').to_i
-    camera = oo.cell(line,'F')
-    #frames = get_frames camera
-    alt_name = oo.cell(line,'F')
-    values << {
-      :source => source, 
-      :start => start_frame,
-      :end => end_frame,
-      :top => nil,
-      :bottom=> nil,
-      :left => nil,
-      :right => nil
-    } unless source.nil?
-    end
-    values
-  end
-end
+require 'ods_importer'
 
 describe "OdsImporter" do
   before :each do
@@ -47,5 +21,11 @@ describe "OdsImporter" do
   it "gets the values i want" do
     k = @imported_data[0]
     k[:source].should == "Test 1"
+    k[:start].should == 61
+    k[:end].should == 209045
+    k[:top].should == 5
+    k[:bottom].should == 3
+    k[:left].should == 2
+    k[:right].should == 4
   end
 end
