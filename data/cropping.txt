@@ -1,0 +1,5 @@
+big camera: 7 left, 3 right, 0 top, 5 bottom
+cam2: 7 left, 9 right, 0 top, 0 bottom
+small: 5 left, 8 right, 3 top, 3 bottom
+cam3: 7 left, 6 right, 0 top, 5 bottom
+cam4: 5 left, 7 right, 0 top, 5 bottom
