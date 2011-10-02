@@ -5,10 +5,10 @@ class OdsImporter
     oo.default_sheet = oo.sheets[1]
     2.upto(oo.last_row) do |line|
       name = oo.cell(line, 'A')
-      top = oo.cell(line, 'B')
-      bottom = oo.cell(line, 'C')
-      left = oo.cell(line, 'D')
-      right = oo.cell(line, 'E')
+      top = oo.cell(line, 'B').to_i
+      bottom = oo.cell(line, 'C').to_i
+      left = oo.cell(line, 'D').to_i
+      right = oo.cell(line, 'E').to_i
       cameras[name] = {
         :top => top,
 	:bottom => bottom,
