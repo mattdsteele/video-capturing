@@ -17,8 +17,9 @@ describe "SynthScripter" do
     result.should include "Trim(24, 42, false)"
   end
 
-  it "converts to rgb" do
+  it "converts to rgb and back to yv12" do
     result.should include "ConvertToRGB32()"
+    result.should include "ConvertToYV12()"
   end
 
   it "crops appropriately" do
@@ -31,5 +32,9 @@ describe "SynthScripter" do
 
   it "resizes to 640x480" do
     result.should include "LanczosResize(640,480)"
+  end
+
+  it "should deinterlace before cropping" do
+    result.index("SmartDeint(").should be < result.index("Crop")
   end
 end
