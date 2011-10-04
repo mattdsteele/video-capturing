@@ -1,7 +1,10 @@
+require 'erb'
+
 class AvsCreator
-  def self.make(item)
-source = <<EOL
-AviSource("<%= item[:source] %>")
+  def self.make(item, file_prefix = nil)
+    file_name = "#{file_prefix}\\#{item[:source]}" unless file_prefix.nil?
+    source = <<EOL
+AviSource("<%= file_name %>.avi")
 Trim(<%= item[:start] %>, <%= item[:end] %>, false)
 ConvertToRGB32()
 LoadVirtualDubPlugin("H:\\vdub\\plugins\\Smart.vdf", "SmartDeint", 1)
@@ -11,7 +14,7 @@ LanczosResize(640,480)
 ConvertToYV12()
 EOL
 
-ERB.new(source).result(binding)
+    ERB.new(source).result(binding)
   end
 end
 

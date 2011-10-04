@@ -2,7 +2,7 @@ require 'erb'
 require 'avs_creator'
 
 item = {:source => "hello", :start => 24, :end => 42, :top => 10, :bottom => 2, :left => 5, :right => 7 }
-result = AvsCreator.make(item)
+result = AvsCreator.make(item, "C:\\test")
 
 describe "SynthScripter" do
   it "can make an output file" do
@@ -10,7 +10,7 @@ describe "SynthScripter" do
   end
 
   it "contains the source I want" do
-    result.should include 'AviSource("hello")'
+    result.should include 'AviSource("C:\\test\\hello.avi")'
   end
 
   it "has the right start and end" do
