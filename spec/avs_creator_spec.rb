@@ -37,4 +37,9 @@ describe "SynthScripter" do
   it "should deinterlace before cropping" do
     result.index("SmartDeint(").should be < result.index("Crop")
   end
+
+  it "should not deinterlace if the right flag is set" do
+  result = AvsCreator.make(item, "C:\\test", :no_deinterlace)
+  result.should_not include "SmartDeint"
+  end
 end
